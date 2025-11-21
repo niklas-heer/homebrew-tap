@@ -1,45 +1,49 @@
 class Tdx < Formula
-  desc "Fast Markdown Todo Manager with TUI"
+  desc "Your todos, in markdown, at terminal speed"
   homepage "https://github.com/niklas-heer/tdx"
-  version "0.2.1"
+  version "0.2.2"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-arm64"
-      sha256 "f8461e40a2ece4affc5c98b4910709c1d605e2a2bd55a5d95314d867e8c927df"
+      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-arm64.zip"
+      sha256 "c2315821147c0d093b2cab72b1db65b45369cbf704d8434480a76a06cda8e728"
 
       def install
         bin.install "tdx-darwin-arm64" => "tdx"
+        bin.install "yoga.wasm"
       end
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-x64"
-      sha256 "18a9b2cea6c0ab83b44e94a763fcf850077be80578773d934c48c32f6e97f090"
+      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-x64.zip"
+      sha256 "61da7721736cc34b4e91be290a2c8d79b24785fa2e48e5e486e5390f23e60518"
 
       def install
         bin.install "tdx-darwin-x64" => "tdx"
+        bin.install "yoga.wasm"
       end
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-arm64"
-      sha256 "3fe92e6d7d3d9a1175d905be839008e030e36a8ee461515341c5f8e12fa0e8dc"
+      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-arm64.zip"
+      sha256 "86fecf8e1a401f4bfeb00cdf64bb9ab202d550679827a08e9522b49d4337d0da"
 
       def install
         bin.install "tdx-linux-arm64" => "tdx"
+        bin.install "yoga.wasm"
       end
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-x64"
-      sha256 "1e460e8216f75bb3c9dc9490d9f03e7909a263e2da783b61bbbe3bebf7c9945b"
+      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-x64.zip"
+      sha256 "7cf688c4f965efcb91a0a8217c30f686bb8914bd2249eb4327e4438c87164462"
 
       def install
         bin.install "tdx-linux-x64" => "tdx"
+        bin.install "yoga.wasm"
       end
     end
   end
