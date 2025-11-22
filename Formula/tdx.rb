@@ -1,7 +1,7 @@
 class Tdx < Formula
   desc "Your todos, in markdown, at terminal speed"
   homepage "https://github.com/niklas-heer/tdx"
-  version "0.2.4"
+  version "0.3.1"
   license "MIT"
 
   on_macos do
