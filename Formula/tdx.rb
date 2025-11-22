@@ -15,11 +15,11 @@ class Tdx < Formula
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-x64"
+      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-amd64"
       sha256 "d71e829fe42b1254d9f0e6e52fa396bc8fa3a03e249c96a00e9d2b6d4188b5b2"
 
       def install
-        bin.install "tdx-darwin-x64" => "tdx"
+        bin.install "tdx-darwin-amd64" => "tdx"
       end
     end
   end
@@ -35,11 +35,11 @@ class Tdx < Formula
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-x64"
+      url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-amd64"
       sha256 "6bf0a5a1204fc85f40f11580f292d8a15d2712181996ac28ff99d30a674687d5"
 
       def install
-        bin.install "tdx-linux-x64" => "tdx"
+        bin.install "tdx-linux-amd64" => "tdx"
       end
     end
   end
