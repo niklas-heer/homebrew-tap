@@ -1,13 +1,13 @@
 class Tdx < Formula
   desc "Your todos, in markdown, at terminal speed"
   homepage "https://github.com/niklas-heer/tdx"
-  version "0.7.0"
+  version "0.8.1"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-arm64"
-      sha256 "ee7a6969277c3bef5bd5144dea5766c7d3c954f32a8d50e1cf79e7f5f208b0a1"
+      sha256 "f1eaa49e9787cece7420f3f5598c2face9396336714216c3e1fdda8d256bbb70"
 
       def install
         bin.install "tdx-darwin-arm64" => "tdx"
@@ -16,7 +16,7 @@ class Tdx < Formula
 
     on_intel do
       url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-amd64"
-      sha256 "a64080984a0e0b1e036e539334c5831fba0a8112de3204aed9d89a5bc557738f"
+      sha256 "0b50da8cbaff186c5148512cf3b82b46fef6483ef570b39fe2963e8ee8e91b48"
 
       def install
         bin.install "tdx-darwin-amd64" => "tdx"
@@ -27,7 +27,7 @@ class Tdx < Formula
   on_linux do
     on_arm do
       url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-arm64"
-      sha256 "b1b7475c0d0bb47f2d15d9def8cac5793caa691fd1c8bf859114882f9a0c1dd5"
+      sha256 "06934ec590cfd4cfe392572c52ac9442f947bad8ab5cef56c9df6880937dd82f"
 
       def install
         bin.install "tdx-linux-arm64" => "tdx"
@@ -36,7 +36,7 @@ class Tdx < Formula
 
     on_intel do
       url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-amd64"
-      sha256 "3f735fe4f231a5e19119dd5d9686a36f3682390dd0d9eb8ff8b6468722c4e519"
+      sha256 "28b3c91249c00051e171d4fb29a6767d873b944233ebf27d7c54c39c20b542c1"
 
       def install
         bin.install "tdx-linux-amd64" => "tdx"
