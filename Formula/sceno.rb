@@ -1,30 +1,31 @@
 class Sceno < Formula
   desc "Declarative architecture diagrams and slide decks from KDL"
   homepage "https://github.com/niklas-heer/sceno"
-  version "0.4.0"
   license "MIT"
 
   on_macos do
+    depends_on macos: :ventura
+
     on_arm do
-      url "https://github.com/niklas-heer/sceno/releases/download/v#{version}/sceno_darwin_arm64.tar.gz"
-      sha256 "5ff0711c8d7116d7fc2ffea62ab1e9e349e871c9f183dd088f73bc718f8f8cd1"
+      url "https://github.com/niklas-heer/sceno/releases/download/v0.5.0/sceno_darwin_arm64.tar.gz"
+      sha256 "754c2c13ddfe3f5db2c6603f555ac29ba13ea7a0063932a69e7aab5e00a9ba56"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/sceno/releases/download/v#{version}/sceno_darwin_amd64.tar.gz"
-      sha256 "0b7c05fa6ab9a0d33ec2590361563715ee2b126057356d6b916dfba350a37eb2"
+      url "https://github.com/niklas-heer/sceno/releases/download/v0.5.0/sceno_darwin_amd64.tar.gz"
+      sha256 "ea7878fd0e6ca5301aed57affeaee17d3a3f89ef51582d801da8dc9b5d9d1bf0"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/niklas-heer/sceno/releases/download/v#{version}/sceno_linux_arm64.tar.gz"
-      sha256 "486d786402f533d56fee196103195d04f7f2d12c2f639c9d142568295fcd52ba"
+      url "https://github.com/niklas-heer/sceno/releases/download/v0.5.0/sceno_linux_arm64.tar.gz"
+      sha256 "c6456c8582a4f955b232651d223993866069da8278ea2c9d6fd7af7bbbf027e7"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/sceno/releases/download/v#{version}/sceno_linux_amd64.tar.gz"
-      sha256 "b4a16ea5d58a2b14c207a381afb34bbcfcf306c8f6805caef4888e988ee02832"
+      url "https://github.com/niklas-heer/sceno/releases/download/v0.5.0/sceno_linux_amd64.tar.gz"
+      sha256 "fa3b3fa2e792856bdd39424ea307ebc3259464118e7bd24027d91a70b20c99a8"
     end
   end
 
