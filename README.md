@@ -18,6 +18,18 @@ dispatch. It validates all four checksums and tests installation on each platfor
 before opening an update PR. Merge that PR to publish the formula; failed checks
 leave the previous version available.
 
+## Latchrun
+
+Local command sessions with scoped credentials, redacted output, and usage analytics.
+
+```bash
+brew install niklas-heer/tap/latchrun
+```
+
+Requires macOS 15 or newer, or GNU/Linux with host glibc 2.39 or newer.
+
+See the [Latchrun documentation](https://github.com/niklas-heer/latchrun#readme) for profiles, providers, and optional OS sandbox requirements.
+
 ## Sceno
 
 Declarative architecture diagrams and slide decks from KDL.
