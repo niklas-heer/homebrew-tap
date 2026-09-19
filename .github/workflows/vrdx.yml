@@ -1,0 +1,104 @@
+name: Update vrdx
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  pull_request:
+    paths: ['Formula/vrdx.rb', 'scripts/*vrdx*', '.github/workflows/vrdx.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vrdx-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    outputs:
+      changed: ${{ steps.generate.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: ruby scripts/test-vrdx-formula.rb
+      - name: Generate candidate from the published release
+        id: generate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/niklas-heer/vrdx/releases/latest > release.json
+          release_tag=$(jq -r .tag_name release.json)
+          gh release download "$release_tag" --repo niklas-heer/vrdx --pattern SHA256SUMS
+          ruby scripts/vrdx-formula.rb release.json SHA256SUMS > Formula/vrdx.rb
+          if git ls-files --error-unmatch Formula/vrdx.rb >/dev/null 2>&1 && git diff --quiet -- Formula/vrdx.rb; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: vrdx-formula
+          path: Formula/vrdx.rb
+
+  install:
+    needs: prepare
+    if: needs.prepare.outputs.changed == 'true' || github.event_name != 'schedule'
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel, ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: Homebrew/actions/setup-homebrew@848c272c7bfe984a197bd4d16383f4c106ec61e6
+        with:
+          stable: true
+      - uses: actions/download-artifact@v8.0.1
+        with:
+          name: vrdx-formula
+          path: Formula
+      - name: Install and test the candidate formula
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: '1'
+        run: |
+          tap_formula="$(brew --repository niklas-heer/tap)/Formula/vrdx.rb"
+          if ! [ Formula/vrdx.rb -ef "$tap_formula" ]; then
+            cp Formula/vrdx.rb "$tap_formula"
+          fi
+          brew install niklas-heer/tap/vrdx
+          brew test niklas-heer/tap/vrdx
+
+  publish:
+    name: Open verified update PR
+    needs: [prepare, install]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && needs.prepare.outputs.changed == 'true'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/download-artifact@v8.0.1
+        with:
+          name: vrdx-formula
+          path: Formula
+      - name: Propose the verified formula
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(sed -n 's/^  version "\([0-9.]*\)"/\1/p' Formula/vrdx.rb)
+          test -n "$version"
+          branch="update/vrdx-$version"
+          if [ "$(gh pr list --head "$branch" --json number --jq length)" -gt 0 ]; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -b "$branch"
+          git add Formula/vrdx.rb
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore(vrdx): update verified release'
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" --title "chore(vrdx): update to $version" --body "Verified checksums and native Homebrew installation tests on macOS and Linux, ARM64 and x86-64. Review and merge to publish the formula update."
