@@ -18,6 +18,18 @@ dispatch. It validates all four checksums and tests installation on each platfor
 before opening an update PR. Merge that PR to publish the formula; failed checks
 leave the previous version available.
 
+## Kindred
+
+A local family-history graph built from Markdown person notes.
+
+```bash
+brew install niklas-heer/tap/kindred
+```
+
+Linux x86-64 binaries require host glibc 2.35 or newer.
+
+See the [Kindred user guide](https://github.com/niklas-heer/kindred/blob/main/docs/USER_GUIDE.md) for archive metadata, the browser viewer, and exports.
+
 ## Latchrun
 
 Local command sessions with scoped credentials, redacted output, and usage analytics.
