@@ -1,32 +1,32 @@
 class Vrdx < Formula
   desc "Engineering decisions in portable Markdown"
   homepage "https://github.com/niklas-heer/vrdx"
-  version "0.3.0"
+  version "0.4.0"
   license "MIT"
 
   on_macos do
     depends_on macos: :sequoia
 
     on_arm do
-      url "https://github.com/niklas-heer/vrdx/releases/download/v0.3.0/vrdx-v0.3.0-aarch64-apple-darwin.tar.gz"
-      sha256 "8c8d40545db399b0e73f90c302c30054ad5a1b3b88664941e53c52536d76a0fa"
+      url "https://github.com/niklas-heer/vrdx/releases/download/v0.4.0/vrdx-v0.4.0-aarch64-apple-darwin.tar.gz"
+      sha256 "dfe164e112fa14b2c928977dd33bb268049bb2d3ebcb9fa9b68cb39f1245e214"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/vrdx/releases/download/v0.3.0/vrdx-v0.3.0-x86_64-apple-darwin.tar.gz"
-      sha256 "139c63775ca357807508e5f27387d98b0161cccfce2d8c3112c18896833a25c5"
+      url "https://github.com/niklas-heer/vrdx/releases/download/v0.4.0/vrdx-v0.4.0-x86_64-apple-darwin.tar.gz"
+      sha256 "2ae5cb93bdde5d7950fea8caadea8ceb0d8d56f9a1dc0c92e73bec2832bc370f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/niklas-heer/vrdx/releases/download/v0.3.0/vrdx-v0.3.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "bec25d3b1b2a2a52d102c9fb232293b728475b7277e5fc24b9f1f969bc8dfc77"
+      url "https://github.com/niklas-heer/vrdx/releases/download/v0.4.0/vrdx-v0.4.0-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "16b16ee2e4874f5cefc4f19cad21d05970bed31a649fe28e507d0725a2ba3790"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/vrdx/releases/download/v0.3.0/vrdx-v0.3.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "17ec3df7845804332ceb3088373093611683afb8026397cf654512dd8448b44c"
+      url "https://github.com/niklas-heer/vrdx/releases/download/v0.4.0/vrdx-v0.4.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "449167da6a68f01413d70c0d1411342ebc9802d797e0a9f7603ed13be708be87"
     end
   end
 
