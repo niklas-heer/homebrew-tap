@@ -7,25 +7,25 @@ class Latchrun < Formula
     depends_on macos: :sequoia
 
     on_arm do
-      url "https://github.com/niklas-heer/latchrun/releases/download/v0.1.0/latchrun-v0.1.0-aarch64-apple-darwin.tar.gz"
-      sha256 "ad468c1d6c3b547979d774e3c226b109de2c63b4fe5948e939bc949e3d557094"
+      url "https://github.com/niklas-heer/latchrun/releases/download/v0.1.1/latchrun-v0.1.1-aarch64-apple-darwin.tar.gz"
+      sha256 "bfa6e17c5ca7da97040dd5c0c940dc333904588b413a5c1765f244756cd65f16"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/latchrun/releases/download/v0.1.0/latchrun-v0.1.0-x86_64-apple-darwin.tar.gz"
-      sha256 "113002d7a12e6dc5267aec26abd752f6102860fdff6ec40940e7879745e91eeb"
+      url "https://github.com/niklas-heer/latchrun/releases/download/v0.1.1/latchrun-v0.1.1-x86_64-apple-darwin.tar.gz"
+      sha256 "061b71444f7531e2b567d8dc8dfe2e9b4b7f003558fc89152eaa50278e74f60e"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/niklas-heer/latchrun/releases/download/v0.1.0/latchrun-v0.1.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "a5833c73c9095e9a5c9231ef20f582e0f177b61ec2335a23859c43cfde755258"
+      url "https://github.com/niklas-heer/latchrun/releases/download/v0.1.1/latchrun-v0.1.1-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "324df5f6bdb27b2cb703355ede7a1c93b6dba69de3477d2b687dbe0b619449ae"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/latchrun/releases/download/v0.1.0/latchrun-v0.1.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "5c6f070834e1332abf0169c8a9e084adee4a599e41355199fac05cd97d879383"
+      url "https://github.com/niklas-heer/latchrun/releases/download/v0.1.1/latchrun-v0.1.1-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "df6546ff8721f686d4ecf0f928fa42542e6e8b59d87313e1cecceca384308a1c"
     end
   end
 
