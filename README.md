@@ -1,6 +1,6 @@
 # Homebrew tap
 
-Homebrew formulae maintained by Niklas Heer.
+Homebrew formulae and casks maintained by Niklas Heer.
 
 ## vrdx
 
@@ -57,5 +57,30 @@ Markdown todos at terminal speed.
 ```bash
 brew install niklas-heer/tap/tdx
 ```
+
+## Keywink
+
+Command launcher with memorable key sequences and an on-screen key guide.
+
+```bash
+brew install --cask niklas-heer/tap/keywink
+```
+
+Requires macOS 13 or newer; runs natively on Apple silicon and Intel.
+
+## Spokn
+
+Text-to-speech reader with karaoke-style highlighting.
+
+```bash
+brew install --cask niklas-heer/tap/spokn
+```
+
+Requires macOS 14 or newer on Apple silicon.
+
+Both apps are notarized and update themselves through Sparkle, so the casks set
+`auto_updates` and `brew upgrade` leaves them alone unless you pass `--greedy`.
+The **Casks** workflow reads each app's appcast hourly, then bumps, audits,
+installs, and checks the new release with Gatekeeper before opening an update PR.
 
 Using the fully qualified formula name lets Homebrew trust only the formula being installed instead of the complete third-party tap.
