@@ -64,7 +64,7 @@ jobs:
           VERSION: ${{ steps.update.outputs.version }}
         run: |
           short="${VERSION%%,*}"
-          branch="update/$CASK-$short"
+          branch="update/$CASK-$(printf '%s' "$VERSION" | tr , -)"
           if [ "$(gh pr list --head "$branch" --json number --jq length)" -gt 0 ]; then
             exit 0
           fi
