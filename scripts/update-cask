@@ -1,0 +1,17 @@
+#!/bin/sh
+# Bump a cask to the version its Sparkle appcast publishes, and report the
+# new version as a GitHub Actions step output. Leaves the cask untouched when
+# it is already current.
+set -eu
+
+cask="niklas-heer/tap/$1"
+status=$(brew livecheck --cask --json --quiet "$cask")
+latest=$(printf '%s' "$status" | jq -er '.[0].version.latest')
+
+if [ "$(printf '%s' "$status" | jq -r '.[0].version.outdated')" != true ]; then
+  echo "$1 is current at $latest"
+  exit 0
+fi
+
+brew bump-cask-pr --write-only --no-audit --no-style --version "$latest" "$cask"
+echo "version=$latest" >> "${GITHUB_OUTPUT:-/dev/null}"

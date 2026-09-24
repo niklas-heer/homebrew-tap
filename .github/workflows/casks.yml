@@ -1,0 +1,78 @@
+name: Casks
+
+on:
+  push:
+    branches: [main]
+    paths: ['Casks/**', 'scripts/update-cask', '.github/workflows/casks.yml']
+  pull_request:
+    paths: ['Casks/**', 'scripts/update-cask', '.github/workflows/casks.yml']
+  schedule:
+    - cron: '41 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: casks-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  cask:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - cask: keywink
+            app: Keywink.app
+          - cask: spokn
+            app: Spokn.app
+    runs-on: macos-15
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: '1'
+      HOMEBREW_NO_INSTALL_CLEANUP: '1'
+      HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: Homebrew/actions/setup-homebrew@848c272c7bfe984a197bd4d16383f4c106ec61e6
+        with:
+          stable: true
+      - name: Bump to the newest appcast release
+        id: update
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: scripts/update-cask ${{ matrix.cask }}
+      - name: Check cask style and metadata
+        if: github.event_name != 'schedule' || steps.update.outputs.version != ''
+        run: |
+          brew style niklas-heer/tap/${{ matrix.cask }}
+          brew audit --cask --strict --online niklas-heer/tap/${{ matrix.cask }}
+      - name: Install, check Gatekeeper, and uninstall
+        if: github.event_name != 'schedule' || steps.update.outputs.version != ''
+        run: |
+          brew install --cask niklas-heer/tap/${{ matrix.cask }}
+          spctl --assess --verbose=2 "/Applications/${{ matrix.app }}"
+          brew uninstall --cask --zap niklas-heer/tap/${{ matrix.cask }}
+      - name: Open verified update PR
+        if: steps.update.outputs.version != '' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CASK: ${{ matrix.cask }}
+          VERSION: ${{ steps.update.outputs.version }}
+        run: |
+          short="${VERSION%%,*}"
+          branch="update/$CASK-$short"
+          if [ "$(gh pr list --head "$branch" --json number --jq length)" -gt 0 ]; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -b "$branch"
+          git add "Casks/$CASK.rb"
+          git diff --cached --quiet && exit 0
+          git commit -m "chore($CASK): update to $short"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" --title "chore($CASK): update to $short" --body "Bumped from the Sparkle appcast. Style, strict online audit, install, Gatekeeper assessment, and uninstall passed on macOS 15 (ARM64). Merge to publish the cask update."
