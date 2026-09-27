@@ -18,6 +18,22 @@ dispatch. It validates all four checksums and tests installation on each platfor
 before opening an update PR. Merge that PR to publish the formula; failed checks
 leave the previous version available.
 
+## repot
+
+Keep every Git repository on your machine organised, current and portable.
+
+```bash
+brew install niklas-heer/tap/repot
+```
+
+Native binaries for macOS and GNU/Linux, on ARM64 and x86-64, with shell
+completions. `brew install --HEAD niklas-heer/tap/repot` builds from source. See
+the [repot guide](https://github.com/niklas-heer/repot#readme).
+
+The **Update repot** workflow checks published stable releases hourly or on manual
+dispatch. It renders the formula from the release's `SHA256SUMS`, tests installation
+on each platform, and opens an update PR. Merge that PR to publish the formula.
+
 ## Kindred
 
 A local family-history graph built from Markdown person notes.
