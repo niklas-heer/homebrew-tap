@@ -95,7 +95,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          version=$(sed -n 's/^  version "\([0-9.]*\)"/\1/p' Formula/repot.rb)
+          version=$(sed -n 's#.*/releases/download/v\([0-9.]*\)/.*#\1#p' Formula/repot.rb | head -n 1)
           test -n "$version"
           branch="update/repot-$version"
           if [ "$(gh pr list --head "$branch" --json number --jq length)" -gt 0 ]; then

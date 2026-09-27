@@ -43,7 +43,6 @@ module RepotFormula
       class Repot < Formula
         desc "Keep Git repositories organised, current and portable"
         homepage "https://github.com/niklas-heer/repot"
-        version "#{version}"
         license "MIT"
 
         head do

@@ -11,7 +11,7 @@ class RepotFormulaTest < Minitest::Test
 
   def test_complete_release_binds_each_url_to_its_own_checksum
     formula = RepotFormula.render(@release, @manifest)
-    assert_includes formula, 'version "0.2.0"'
+    refute_includes formula, "version \"", "Homebrew reads the version from the release URLs"
     @names.each_with_index do |name, index|
       assert_match(%r{/v0\.2\.0/#{Regexp.escape(name)}"\n\s+sha256 "#{index.to_s * 64}"}, formula)
     end

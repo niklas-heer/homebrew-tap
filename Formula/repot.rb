@@ -1,7 +1,6 @@
 class Repot < Formula
   desc "Keep Git repositories organised, current and portable"
   homepage "https://github.com/niklas-heer/repot"
-  version "0.1.0"
   license "MIT"
 
   head do
