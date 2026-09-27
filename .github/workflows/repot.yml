@@ -98,7 +98,8 @@ jobs:
           version=$(sed -n 's#.*/releases/download/v\([0-9.]*\)/.*#\1#p' Formula/repot.rb | head -n 1)
           test -n "$version"
           branch="update/repot-$version"
-          if [ "$(gh pr list --head "$branch" --json number --jq length)" -gt 0 ]; then
+          # A closed update PR means the version was declined; do not propose it again.
+          if [ "$(gh pr list --state all --head "$branch" --json number --jq length)" -gt 0 ]; then
             exit 0
           fi
           git config user.name 'github-actions[bot]'
