@@ -46,8 +46,9 @@ brew services start niklas-heer/tap/sideporch   # optional: run it in the backgr
 
 Native binaries for macOS and Linux, on ARM64 and x86-64. The Linux binaries are
 fully static (musl), so they need no particular glibc. The background service keeps
-its data in `$(brew --prefix)/var/sideporch` and prints the first-account setup
-link to `$(brew --prefix)/var/log/sideporch.log`. See the
+its data in `$(brew --prefix)/var/sideporch`; get the one-time link for the first
+account with `sideporch setup-link --data "$(brew --prefix)/var/sideporch"`. The
+link is kept out of the service log. See the
 [Sideporch guide](https://github.com/niklas-heer/sideporch#readme).
 
 The **Update Sideporch** workflow checks published stable releases hourly or on

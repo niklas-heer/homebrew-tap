@@ -28,12 +28,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Until Sideporch publishes its first release there is nothing to render.
-          if ! gh api repos/niklas-heer/sideporch/releases/latest > release.json 2>/dev/null; then
-            echo 'No published Sideporch release yet'
-            echo 'changed=false' >> "$GITHUB_OUTPUT"
-            echo 'published=false' >> "$GITHUB_OUTPUT"
-            exit 0
+          # Until Sideporch publishes its first release there is nothing to
+          # render. Any other API failure fails the check.
+          if ! gh api repos/niklas-heer/sideporch/releases/latest > release.json 2> api-error.txt; then
+            if grep -q 'HTTP 404' api-error.txt; then
+              echo 'No published Sideporch release yet'
+              echo 'changed=false' >> "$GITHUB_OUTPUT"
+              echo 'published=false' >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            cat api-error.txt >&2
+            exit 1
           fi
           echo 'published=true' >> "$GITHUB_OUTPUT"
           release_tag=$(jq -r .tag_name release.json)
