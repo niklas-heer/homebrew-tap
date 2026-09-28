@@ -11,25 +11,25 @@ class Sideporch < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/niklas-heer/sideporch/releases/download/v0.2.0/sideporch-0.2.0-aarch64-apple-darwin.tar.gz"
-      sha256 "5dc4d191b329ae98924ed1f99ca18cf238673d4a8bb6da58de7d3e9f1d5207f1"
+      url "https://github.com/niklas-heer/sideporch/releases/download/v0.3.0/sideporch-0.3.0-aarch64-apple-darwin.tar.gz"
+      sha256 "79e02090a3347ed2db79b5d316f393260341c92553f49cad359bbaae3c9e1cf6"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/sideporch/releases/download/v0.2.0/sideporch-0.2.0-x86_64-apple-darwin.tar.gz"
-      sha256 "ea9af127a58df7251a6789f67d7593b5240e45248f2c1d9dc7f6298163e2d65e"
+      url "https://github.com/niklas-heer/sideporch/releases/download/v0.3.0/sideporch-0.3.0-x86_64-apple-darwin.tar.gz"
+      sha256 "09ffa8b9e18e0b87214aa781ffcfebfd50eddd422abe17390c2c849360e80e58"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/niklas-heer/sideporch/releases/download/v0.2.0/sideporch-0.2.0-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "e25b21bc0e5dbbe082ec98bbe5224a77d478460c1d720177162c97e2d184483f"
+      url "https://github.com/niklas-heer/sideporch/releases/download/v0.3.0/sideporch-0.3.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "ada9a74eace5b887ff82cdc14ae255b207974112ef0fcc09dd02a4c8c83128d5"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/sideporch/releases/download/v0.2.0/sideporch-0.2.0-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "652bd372023084cbd8068911feab6d4935e8b92c1bfd8e02956d2137016fe25c"
+      url "https://github.com/niklas-heer/sideporch/releases/download/v0.3.0/sideporch-0.3.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "99a4a84314b2209804fcdfabdd496518bf4a19577757ea2de6d674df119e85df"
     end
   end
 
