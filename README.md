@@ -34,6 +34,28 @@ The **Update repot** workflow checks published stable releases hourly or on manu
 dispatch. It renders the formula from the release's `SHA256SUMS`, tests installation
 on each platform, and opens an update PR. Merge that PR to publish the formula.
 
+## Sideporch
+
+A small, self-hosted team chat: channels, direct messages, threads, search, file
+uploads, push notifications, Slack-compatible webhooks and Lua automations.
+
+```bash
+brew install niklas-heer/tap/sideporch
+brew services start niklas-heer/tap/sideporch   # optional: run it in the background
+```
+
+Native binaries for macOS and Linux, on ARM64 and x86-64. The Linux binaries are
+fully static (musl), so they need no particular glibc. The background service keeps
+its data in `$(brew --prefix)/var/sideporch`; get the one-time link for the first
+account with `sideporch setup-link --data "$(brew --prefix)/var/sideporch"`. The
+link is kept out of the service log. See the
+[Sideporch guide](https://github.com/niklas-heer/sideporch#readme).
+
+The **Update Sideporch** workflow checks published stable releases hourly or on
+manual dispatch. It renders the formula from the release's `SHA256SUMS`, tests
+installation and a running server on each platform, and opens an update PR. Merge
+that PR to publish the formula. Until the first release exists, it does nothing.
+
 ## Kindred
 
 A local family-history graph built from Markdown person notes.
