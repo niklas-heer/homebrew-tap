@@ -43,7 +43,18 @@ jobs:
           echo 'published=true' >> "$GITHUB_OUTPUT"
           release_tag=$(jq -r .tag_name release.json)
           gh release download "$release_tag" --repo niklas-heer/sideporch --pattern SHA256SUMS
+          # A pull request may propose a formula; it must be exactly what the
+          # latest release generates, so the install checks test what merges.
+          proposed=''
+          if [ "$GITHUB_EVENT_NAME" = pull_request ] && [ -f Formula/sideporch.rb ]; then
+            proposed=$(mktemp)
+            cp Formula/sideporch.rb "$proposed"
+          fi
           ruby scripts/sideporch-formula.rb release.json SHA256SUMS > Formula/sideporch.rb
+          if [ -n "$proposed" ] && ! diff -u "$proposed" Formula/sideporch.rb; then
+            echo "::error file=Formula/sideporch.rb::The proposed formula differs from the one generated for $release_tag. Regenerate it with scripts/sideporch-formula.rb."
+            exit 1
+          fi
           if git ls-files --error-unmatch Formula/sideporch.rb >/dev/null 2>&1 && git diff --quiet -- Formula/sideporch.rb; then
             echo 'changed=false' >> "$GITHUB_OUTPUT"
           else
@@ -122,5 +133,7 @@ jobs:
           git add Formula/sideporch.rb
           git diff --cached --quiet && exit 0
           git commit -m 'chore(sideporch): update verified release'
-          git push origin "$branch"
+          # The branch belongs to this workflow. If an earlier run pushed it
+          # but failed to open the PR, replace it with this verified commit.
+          git push --force origin "$branch"
           gh pr create --base main --head "$branch" --title "chore(sideporch): update to $version" --body "Verified checksums and native Homebrew installation tests on macOS and Linux, ARM64 and x86-64. Review and merge to publish the formula update."
