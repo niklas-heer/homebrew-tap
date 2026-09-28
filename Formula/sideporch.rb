@@ -60,7 +60,7 @@ class Sideporch < Formula
       end
       assert healthy, "sideporch did not answer on its health endpoint"
       assert_path_exists testpath/"data/sideporch.db"
-      assert_match "/setup/", shell_output("#{bin}/sideporch setup-link --data #{testpath}/data")
+      assert_match "/setup", shell_output("#{bin}/sideporch setup-link --data #{testpath}/data")
     ensure
       Process.kill("TERM", pid)
       Process.wait(pid)
