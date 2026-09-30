@@ -5,21 +5,21 @@ class Quirl < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/niklas-heer/quirl/releases/download/v0.3.0/quirl-v0.3.0-aarch64-apple-darwin.tar"
-      sha256 "ab116b02c2bc41143453d09c679eb99dcb7312234ec10057d4fd347de5f343c2"
+      url "https://github.com/niklas-heer/quirl/releases/download/v0.4.0/quirl-v0.4.0-aarch64-apple-darwin.tar"
+      sha256 "bb8d82bfb5f141c8607f71a151abf89042e60af23a61ce28e02666c273fa59d7"
     else
-      url "https://github.com/niklas-heer/quirl/releases/download/v0.3.0/quirl-v0.3.0-x86_64-apple-darwin.tar"
-      sha256 "33c425720b2efacf83911ac1e97be8b814165f30f70e76f0124e100b4b53a7f0"
+      url "https://github.com/niklas-heer/quirl/releases/download/v0.4.0/quirl-v0.4.0-x86_64-apple-darwin.tar"
+      sha256 "7c1571a0a023a4eb79e76340b8faf07814aaac6613ef11fc1cf1fa412b4b2b1a"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/niklas-heer/quirl/releases/download/v0.3.0/quirl-v0.3.0-aarch64-unknown-linux-gnu.tar"
-      sha256 "01a2abdbc86743ded1cda5f9ed154d9c3796a126112c70c5ad4f0917be03da29"
+      url "https://github.com/niklas-heer/quirl/releases/download/v0.4.0/quirl-v0.4.0-aarch64-unknown-linux-gnu.tar"
+      sha256 "a2edd277d258a3131f5aad62b2cb8d2a530d4b4d9c592dba5ef69984ab9b4739"
     else
-      url "https://github.com/niklas-heer/quirl/releases/download/v0.3.0/quirl-v0.3.0-x86_64-unknown-linux-gnu.tar"
-      sha256 "97935d3d0cf7de72c84f3b1b17855fff97b5d9a086037e325b19788329573148"
+      url "https://github.com/niklas-heer/quirl/releases/download/v0.4.0/quirl-v0.4.0-x86_64-unknown-linux-gnu.tar"
+      sha256 "afeef6fee59c35479636cac01fb309f3b6309f4a62da1a587339c1245515000e"
     end
   end
 
@@ -29,7 +29,7 @@ class Quirl < Formula
   end
 
   test do
-    assert_match "quirl 0.3.0", shell_output("#{bin}/quirl --version")
+    assert_match "quirl 0.4.0", shell_output("#{bin}/quirl --version")
     %w[LICENSE THIRD_PARTY_NOTICES.md THIRD_PARTY_LICENSES.txt].each do |notice|
       assert_path_exists pkgshare/"licenses"/notice
     end
