@@ -117,7 +117,18 @@ brew install --cask niklas-heer/tap/spokn
 
 Requires macOS 14 or newer on Apple silicon.
 
-Both apps are notarized and update themselves through Sparkle, so the casks set
+## Focal
+
+Focused Markdown editor with live rendering, opened from the terminal.
+
+```bash
+brew install --cask niklas-heer/tap/focal
+```
+
+Requires macOS 14 or newer on Apple silicon. The cask links the `focal` command,
+so `focal notes.md` and `focal .` work right away.
+
+All three apps are notarized and update themselves through Sparkle, so the casks set
 `auto_updates` and `brew upgrade` leaves them alone unless you pass `--greedy`.
 The **Casks** workflow reads each app's appcast hourly, then bumps, audits,
 installs, and checks the new release with Gatekeeper before opening an update PR.

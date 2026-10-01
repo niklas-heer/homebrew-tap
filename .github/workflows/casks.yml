@@ -27,6 +27,8 @@ jobs:
             app: Keywink.app
           - cask: spokn
             app: Spokn.app
+          - cask: focal
+            app: Focal.app
     runs-on: macos-15
     timeout-minutes: 20
     permissions:
