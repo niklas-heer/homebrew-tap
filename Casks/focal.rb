@@ -1,6 +1,6 @@
 cask "focal" do
-  version "0.3.0,3"
-  sha256 "7f358e0a6ecf88c10f7944df5642728c0d5bf6823ecfdec979c4d668b37af6db"
+  version "0.4.0,4"
+  sha256 "e910e263788725f46b8ab5d32b3ef5c031b58767645dddf9c38330720a8be61c"
 
   url "https://github.com/niklas-heer/focal/releases/download/v#{version.csv.first}/Focal-#{version.csv.first}-#{version.csv.second}.zip"
   name "Focal"
@@ -24,5 +24,6 @@ cask "focal" do
     "~/Library/Caches/com.niklasheer.focal",
     "~/Library/HTTPStorages/com.niklasheer.focal",
     "~/Library/Preferences/com.niklasheer.focal.plist",
+    "~/Library/WebKit/com.niklasheer.focal",
   ]
 end
