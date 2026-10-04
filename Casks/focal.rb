@@ -1,6 +1,6 @@
 cask "focal" do
-  version "0.4.0,4"
-  sha256 "e910e263788725f46b8ab5d32b3ef5c031b58767645dddf9c38330720a8be61c"
+  version "0.5.0,5"
+  sha256 "b342842e9829b472b6b07afc1cf9debb36e59a98a94d36c74f064534c173a193"
 
   url "https://github.com/niklas-heer/focal/releases/download/v#{version.csv.first}/Focal-#{version.csv.first}-#{version.csv.second}.zip"
   name "Focal"
