@@ -13,25 +13,25 @@ class Repot < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/niklas-heer/repot/releases/download/v0.3.0/repot-0.3.0-aarch64-apple-darwin.tar.gz"
-      sha256 "3afee677c1214a2ce7b6d2d9fcb47f6f203ccfc339dfedae97779e340da4b90c"
+      url "https://github.com/niklas-heer/repot/releases/download/v0.4.0/repot-0.4.0-aarch64-apple-darwin.tar.gz"
+      sha256 "1c9e0b454c278e48cfef3c1a3009b4614a3be9d20f83836bbb582c378625e8b4"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/repot/releases/download/v0.3.0/repot-0.3.0-x86_64-apple-darwin.tar.gz"
-      sha256 "9b95487e5b5c61384b537da4e52a368b575d16a293a8406021946195d2b99938"
+      url "https://github.com/niklas-heer/repot/releases/download/v0.4.0/repot-0.4.0-x86_64-apple-darwin.tar.gz"
+      sha256 "440a79999681897ca53c1af9ee23b38a367df0ae0556ae538726e94046ba95fd"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/niklas-heer/repot/releases/download/v0.3.0/repot-0.3.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "b1f36501942f71b0630464d9aa193ad6813d2de7f97b5c6bd86b553ad216bb3d"
+      url "https://github.com/niklas-heer/repot/releases/download/v0.4.0/repot-0.4.0-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "17fa6810b9397d035252fff45e9b9e5c5312ef0d92e668f192e3a1611f5de8ea"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/repot/releases/download/v0.3.0/repot-0.3.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "a90686a9a220694917f1f3f2b2607258daea606e999fea6551471c1f439becfd"
+      url "https://github.com/niklas-heer/repot/releases/download/v0.4.0/repot-0.4.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "384b268b32403219cdffe8f4e76f34fd9142bda3238a8cbe8745343b9958f209"
     end
   end
 
