@@ -32,7 +32,7 @@ the [repot guide](https://github.com/niklas-heer/repot#readme).
 
 The **Update repot** workflow checks published stable releases hourly or on manual
 dispatch. It renders the formula from the release's `SHA256SUMS`, tests installation
-on each platform, and opens an update PR. Merge that PR to publish the formula.
+on Apple silicon macOS and on Linux (ARM64 and x86-64), and opens an update PR. Merge that PR to publish the formula.
 
 ## Sideporch
 

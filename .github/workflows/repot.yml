@@ -47,7 +47,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [macos-15, macos-15-intel, ubuntu-24.04, ubuntu-24.04-arm]
+        # No macos-15-intel: Homebrew no longer bottles for Intel macOS, so repot's
+        # git dependency builds cmake from source and exceeds the job timeout.
+        runner: [macos-15, ubuntu-24.04, ubuntu-24.04-arm]
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 20
     steps:
@@ -109,4 +111,4 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m 'chore(repot): update verified release'
           git push origin "$branch"
-          gh pr create --base main --head "$branch" --title "chore(repot): update to $version" --body "Verified checksums and native Homebrew installation tests on macOS and Linux, ARM64 and x86-64. Review and merge to publish the formula update."
+          gh pr create --base main --head "$branch" --title "chore(repot): update to $version" --body "Verified checksums and native Homebrew installation tests on Apple silicon macOS and on Linux, ARM64 and x86-64. Review and merge to publish the formula update."
