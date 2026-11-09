@@ -1,30 +1,30 @@
 class Tdx < Formula
   desc "Your todos, in markdown, at terminal speed"
   homepage "https://github.com/niklas-heer/tdx"
-  version "0.14.0"
+  version "0.15.0"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-arm64"
-      sha256 "55fbfd3d0654ff8b7f8b074ad32c6631ad11df7e8c180f5f11dd39c0456af473"
+      sha256 "64328739307b57937fb53e04d5700b243daa44678099efbbd057e658a257bccc"
     end
 
     on_intel do
       url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-darwin-amd64"
-      sha256 "a73360897a3dd478b0ee3e560d7317f4a3060bf116424676d08ac07c51103716"
+      sha256 "fcc86faf17365f370b43a7f7d35e85e414e33e3e6eeac3bff4f46173520509ad"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-arm64"
-      sha256 "1ddb7d866014b35f5265d8647a92d18259601e9660915610bab23bf15e8dfa51"
+      sha256 "d53a7ac6ec77231e79fca6a3d633e0f0c28b42899b17d16e5156d5736c3e1f13"
     end
 
     on_intel do
       url "https://github.com/niklas-heer/tdx/releases/download/v#{version}/tdx-linux-amd64"
-      sha256 "a21f4b83d7731b946e4820f8f52e373197efd8cd0eae0e8dbfd905b3e9e16e2a"
+      sha256 "5ae8e1c0eb2619c371feb00fbd7f66785e9b6ed2728bb35991211d2b47a25d7f"
     end
   end
 
