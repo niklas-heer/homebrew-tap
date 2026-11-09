@@ -38,9 +38,13 @@ class Latchrun < Formula
   end
 
   def caveats
-    return unless OS.linux?
+    upgrade = <<~EOS
+      After upgrading, run `latchrun service start`. It replaces an older running
+      service, which ends that service's active sessions.
+    EOS
+    return upgrade unless OS.linux?
 
-    <<~EOS
+    upgrade + <<~EOS
       Linux release binaries require host glibc 2.39 or newer.
       Optional sandboxing also requires /usr/bin/bwrap and permitted user namespaces.
     EOS
