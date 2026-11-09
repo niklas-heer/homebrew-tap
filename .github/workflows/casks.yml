@@ -32,6 +32,7 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 20
     permissions:
+      actions: write
       contents: write
       pull-requests: write
     env:
@@ -78,3 +79,7 @@ jobs:
           git commit -m "chore($CASK): update to $short"
           git push origin "$branch"
           gh pr create --base main --head "$branch" --title "chore($CASK): update to $short" --body "Bumped from the Sparkle appcast. Style, strict online audit, install, Gatekeeper assessment, and uninstall passed on macOS 15 (ARM64). Merge to publish the cask update."
+          # Pull requests opened with GITHUB_TOKEN start their pull_request run in
+          # 'action_required' (a maintainer must approve it). A dispatched run is not
+          # gated, so verify the pushed branch that way; its checks show on the PR.
+          gh workflow run casks.yml --ref "$branch"

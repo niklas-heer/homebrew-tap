@@ -108,6 +108,7 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && needs.prepare.outputs.changed == 'true'
     runs-on: ubuntu-24.04
     permissions:
+      actions: write
       contents: write
       pull-requests: write
     steps:
@@ -137,3 +138,7 @@ jobs:
           # but failed to open the PR, replace it with this verified commit.
           git push --force origin "$branch"
           gh pr create --base main --head "$branch" --title "chore(sideporch): update to $version" --body "Verified checksums and native Homebrew installation tests on macOS and Linux, ARM64 and x86-64. Review and merge to publish the formula update."
+          # Pull requests opened with GITHUB_TOKEN start their pull_request run in
+          # 'action_required' (a maintainer must approve it). A dispatched run is not
+          # gated, so verify the pushed branch that way; its checks show on the PR.
+          gh workflow run sideporch.yml --ref "$branch"
