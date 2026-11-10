@@ -7,25 +7,25 @@ class Latchrun < Formula
     depends_on macos: :sequoia
 
     on_arm do
-      url "https://github.com/niklas-heer/latchrun/releases/download/v0.2.0/latchrun-v0.2.0-aarch64-apple-darwin.tar.gz"
-      sha256 "d6d065d2c9bcdc382960a3c978f834c12a661ae57417550a9c3a4425cfcae7d8"
+      url "https://github.com/niklas-heer/latchrun/releases/download/v0.3.1/latchrun-v0.3.1-aarch64-apple-darwin.tar.gz"
+      sha256 "63fcd306c8a8238bbd500b64054fc8384e8cd3489ccbab39f4fcd9420d50ab3a"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/latchrun/releases/download/v0.2.0/latchrun-v0.2.0-x86_64-apple-darwin.tar.gz"
-      sha256 "59d9f04a0770af5497fa83816e768eefbee54a741e7024bfd20edf086bf9a53a"
+      url "https://github.com/niklas-heer/latchrun/releases/download/v0.3.1/latchrun-v0.3.1-x86_64-apple-darwin.tar.gz"
+      sha256 "d5a1a218e0ba6809243fdd16969f41e992cdc4145d2fa0b0c5d708d11630f398"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/niklas-heer/latchrun/releases/download/v0.2.0/latchrun-v0.2.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "15d23fd4c857c11dda5ed4c98fbff9ee54cfe70787c61a4f7c6df2bf2333fb04"
+      url "https://github.com/niklas-heer/latchrun/releases/download/v0.3.1/latchrun-v0.3.1-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "583a4c0780c7d19dcc60864aadc88bf88e9a58ef2333457f8d603f3f09071b76"
     end
 
     on_intel do
-      url "https://github.com/niklas-heer/latchrun/releases/download/v0.2.0/latchrun-v0.2.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "3f31b5b0a6ec5c87f426d098cde8580bd61c5e606c7adda908983a1fab11a39a"
+      url "https://github.com/niklas-heer/latchrun/releases/download/v0.3.1/latchrun-v0.3.1-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "737e7058e323482d8baef58a0bf559beade7721005d4f67c2a7520e0c7fff770"
     end
   end
 
@@ -38,9 +38,13 @@ class Latchrun < Formula
   end
 
   def caveats
-    return unless OS.linux?
+    upgrade = <<~EOS
+      After upgrading, run `latchrun service start`. It replaces an older running
+      service, which ends that service's active sessions.
+    EOS
+    return upgrade unless OS.linux?
 
-    <<~EOS
+    upgrade + <<~EOS
       Linux release binaries require host glibc 2.39 or newer.
       Optional sandboxing also requires /usr/bin/bwrap and permitted user namespaces.
     EOS
