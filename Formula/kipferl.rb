@@ -1,26 +1,26 @@
 class Kipferl < Formula
   desc "Bake Python CLI apps into fast standalone binaries"
   homepage "https://kipferl.dev"
-  version "0.7.4"
+  version "0.8.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/niklas-heer/kipferl/releases/download/v#{version}/kipferl-macos-aarch64"
-      sha256 "7010c290c78d8f8979bbe3470e8ee3968ba807d294995b3dc25a4726d4df1adf"
+      sha256 "c02c5d128e337d487a903f5b0099e81439eff83dfc381761f48af43f2138066b"
     else
       url "https://github.com/niklas-heer/kipferl/releases/download/v#{version}/kipferl-macos-x86_64"
-      sha256 "87368487846b1f265289d709445a2faa0a99bd755649aecce7f62698480ff965"
+      sha256 "b3f20b65f2cb8f68c58316df8212b9c9d7f691e343b7912079cc5a87f04b7864"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/niklas-heer/kipferl/releases/download/v#{version}/kipferl-linux-aarch64"
-      sha256 "d637c6743893bc2a0d324299faf17cfcfdde0f09d86b53c7b49f4dc341b3e87b"
+      sha256 "9472363fef4aa9435454ca968c21b943cc5b8277bf537d27461a22f8195aa78b"
     else
       url "https://github.com/niklas-heer/kipferl/releases/download/v#{version}/kipferl-linux-x86_64"
-      sha256 "ca98c91b0ce330c90ba6b2471a352d0ff849dda892c3106bcc7e8c0e603c53fe"
+      sha256 "bd752381392ffb7a07bab6352172c367718ec77947637c2b38000c7afee7407a"
     end
   end
 
