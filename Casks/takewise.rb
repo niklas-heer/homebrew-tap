@@ -1,6 +1,6 @@
 cask "takewise" do
-  version "0.1.0,1"
-  sha256 "c26cf55daf302415e476ca7902858a8cc09c4b38c5416202e38e220698941199"
+  version "0.1.1,2"
+  sha256 "fca6e19c201c0956c81cf7e420464a75b8226a69574164aa68424f6cfcc23d25"
 
   url "https://github.com/niklas-heer/takewise/releases/download/v#{version.csv.first}/Takewise-#{version.csv.first}-#{version.csv.second}.zip"
   name "Takewise"
