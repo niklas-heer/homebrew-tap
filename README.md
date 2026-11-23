@@ -133,4 +133,20 @@ All three apps are notarized and update themselves through Sparkle, so the casks
 The **Casks** workflow reads each app's appcast hourly, then bumps, audits,
 installs, and checks the new release with Gatekeeper before opening an update PR.
 
+## Takewise
+
+Record voiceover narration over a finished film, line by line: a karaoke-style
+teleprompter timed to the film, several takes per line, word checks with
+whisper.cpp, and a CLI that agents can drive.
+
+```bash
+brew install --cask niklas-heer/tap/takewise
+takewise models install   # the speech model, 1.5 GB
+```
+
+Requires macOS 14 or newer on Apple silicon. The cask installs `whisper-cpp` and
+`ffmpeg` and links the `takewise` command. Takewise is notarized but has no update
+feed of its own: `brew upgrade --cask takewise` updates it. The **Casks** workflow
+finds new GitHub releases hourly and checks them the same way as the apps above.
+
 Using the fully qualified formula name lets Homebrew trust only the formula being installed instead of the complete third-party tap.
