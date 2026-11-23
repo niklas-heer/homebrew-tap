@@ -29,6 +29,8 @@ jobs:
             app: Spokn.app
           - cask: focal
             app: Focal.app
+          - cask: takewise
+            app: Takewise.app
     runs-on: macos-15
     timeout-minutes: 20
     permissions:
